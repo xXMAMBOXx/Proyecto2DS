@@ -9,6 +9,7 @@ package SistAmortizacion;
 import DTOs.DTOServicioAmortizacion;
 import Modelo.ServicioAmortizacion;
 import Modelo.ServicioAleman;
+import Modelo.ServicioFrances;
 
 /**
  *
@@ -24,18 +25,14 @@ public class Proyecto2 {
         
         ServicioAmortizacion serv;
         serv = new ServicioAleman(x);
-        //serv.calcularCuotas();
-        //System.err.println("cuota total:    "+serv.getCuotaCK());
-        //serv.calcularAmortizaciones();System.err.println("cuotaaa:    "+serv.getAmortizacionCK());
-       //serv.calcularIntereses();
-        //System.err.println(serv.getInteresSK());
+        serv.calcularCuotas();
         serv.calcularAmortizaciones();
-        //serv.calcularCuotas();
-        //serv.calcularDeudas();
-        //serv.
         
+        serv.calcularIntereses();
         
         serv.calcularDeudas();
+        
+        System.out.println(serv.getInteresSK());
         
     }
     

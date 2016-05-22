@@ -25,7 +25,6 @@ public abstract class ServicioAmortizacion {
         this.montoPrestamoV=servicio.getMontoPrestamo();
         this.periodos=servicio.getPeriodos();
         this.interesAnual=servicio.getInteres();
-        this.interesTotal=this.calcularInteresTotal();
         
         this.cuotas=new ArrayList<Double>();
         this.amortizaciones=new ArrayList<Double>();
@@ -37,7 +36,7 @@ public abstract class ServicioAmortizacion {
     public boolean verificarV(){
         double v=0;
         for(int k=1;k!=this.periodos;k++){
-            v+=(this.calcularAmortizacionVk()*(1/(1+this.interesAnual)));
+            //v+=(this.calcularAmortizacionVk()*(1/(1+this.interesAnual)));
             System.out.println(v);
         }
         return true;
@@ -56,8 +55,8 @@ public abstract class ServicioAmortizacion {
         return this.interesTotal;
     }
     
-    private double calcularInteresTotal(){
-        return this.interesTotal=this.montoPrestamoV*this.interesAnual;
+    protected double calcularInteresTotal(){
+        return this.montoPrestamoV*this.interesAnual;
     }
     
     protected void asignarCuotaTotal(){
@@ -77,10 +76,7 @@ public abstract class ServicioAmortizacion {
             this.interesTotal+=i;
         }
     }
-     
-    public abstract double calcularAmortizacionVk();      
-            
-    public abstract double cuotaSk(double año);
+                
     
     public abstract double calcularCuotaInteresN(int periodo);
     
@@ -88,7 +84,27 @@ public abstract class ServicioAmortizacion {
     
     public abstract void calcularCuotas();
     
-    public abstract void calcularIntereses();
+      
     
-    public abstract void calcularDeudas();
+    public void calcularIntereses(){
+        
+        for (int i=1;i<=this.periodos;i++){
+            //System.err.println(this.calcularCuotaInteresN(i));          
+            this.intereses.add(this.calcularCuotaInteresN(i));
+        }  
+        this.asignarInteresesTotal();
+  
+    }
+    
+ 
+    public void calcularDeudas(){
+        double deuda=this.montoPrestamoV;
+        this.deudas.add(deuda);
+        for(int i=0;i!=this.periodos;i++){
+            System.err.println(deuda); 
+            deuda-=this.amortizaciones.get(i);
+            this.deudas.add(deuda);
+        }
+    }
+    
 }
