@@ -9,6 +9,7 @@ package SistAmortizacion;
 import DTOs.DTOServicioAmortizacion;
 import Modelo.ServicioAmortizacion;
 import Modelo.ServicioAleman;
+import Modelo.ServicioAmericano;
 import Modelo.ServicioFrances;
 
 /**
@@ -24,15 +25,19 @@ public class Proyecto2 {
         DTOs.DTOServicioAmortizacion x=new DTOServicioAmortizacion(1000000,5, 0.15);
         
         ServicioAmortizacion serv;
-        serv = new ServicioAleman(x);
-        serv.calcularCuotas();
-        serv.calcularAmortizaciones();
+        serv = new ServicioAmericano(x);
+       // serv.calcularCuotas();
         
-        serv.calcularIntereses();
+       // serv.calcularAmortizaciones();
         
-        serv.calcularDeudas();
         
-        System.out.println(serv.getInteresSK());
+        
+        //serv.calcularCuotas();
+       // serv.calcularCuotas();
+        
+       // serv.calcularDeudas();
+        
+        serv.verificarV();
         
     }
     

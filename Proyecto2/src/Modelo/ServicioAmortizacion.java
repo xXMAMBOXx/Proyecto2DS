@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 
 public abstract class ServicioAmortizacion {
+    
     double montoPrestamoV;
     int periodos;
     double interesAnual;
@@ -34,9 +35,9 @@ public abstract class ServicioAmortizacion {
     
     
     public boolean verificarV(){
+        
         double v=0;
         for(int k=1;k!=this.periodos;k++){
-            //v+=(this.calcularAmortizacionVk()*(1/(1+this.interesAnual)));
             System.out.println(v);
         }
         return true;
@@ -60,51 +61,51 @@ public abstract class ServicioAmortizacion {
     }
     
     protected void asignarCuotaTotal(){
+        this.cuotaCK=0;
         for(double i: this.cuotas){
             this.cuotaCK+=i;
         }
     }
     
     protected void asignarAmortizacionTotal(){
+        this.amortizacionRealVK=0;
          for(double i: this.amortizaciones){
             this.amortizacionRealVK+=i;
         }
     }
     
      protected void asignarInteresesTotal(){
+        this.interesTotal=0;
         for(double i: this.intereses){
             this.interesTotal+=i;
         }
     }
-                
     
-    public abstract double calcularCuotaInteresN(int periodo);
+    public void calcularIntereses(){
+        
+        for (int i=0;i+1<=this.periodos;i++){   
+            this.intereses.add(this.calcularCuotaInteresN(i+1));
+        }  
+        this.asignarInteresesTotal();
+    }
+     
+    public void calcularDeudas(){
+        
+        double deuda=this.montoPrestamoV;
+        this.deudas.add(deuda);
+        
+        for(int i=0;i!=this.periodos;i++){
+            deuda-=this.amortizaciones.get(i);
+            this.deudas.add(deuda);
+        }
+    }
+    
+    
+     public abstract double calcularCuotaInteresN(int periodo);
     
     public abstract void calcularAmortizaciones();
     
     public abstract void calcularCuotas();
     
       
-    
-    public void calcularIntereses(){
-        
-        for (int i=1;i<=this.periodos;i++){
-            //System.err.println(this.calcularCuotaInteresN(i));          
-            this.intereses.add(this.calcularCuotaInteresN(i));
-        }  
-        this.asignarInteresesTotal();
-  
-    }
-    
- 
-    public void calcularDeudas(){
-        double deuda=this.montoPrestamoV;
-        this.deudas.add(deuda);
-        for(int i=0;i!=this.periodos;i++){
-            System.err.println(deuda); 
-            deuda-=this.amortizaciones.get(i);
-            this.deudas.add(deuda);
-        }
-    }
-    
 }
