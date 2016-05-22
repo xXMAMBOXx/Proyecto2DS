@@ -26,9 +26,11 @@ public abstract class ServicioAmortizacion {
         this.periodos=servicio.getPeriodos();
         this.interesAnual=servicio.getInteres();
         this.interesTotal=this.calcularInteresTotal();
+        
         this.cuotas=new ArrayList<Double>();
         this.amortizaciones=new ArrayList<Double>();
         this.intereses=new ArrayList<Double>();
+        this.deudas=new ArrayList<Double>();
     }
     
     
@@ -86,6 +88,7 @@ public abstract class ServicioAmortizacion {
     
     public abstract void calcularCuotas();
     
-     public abstract void calcularIntereses();
+    public abstract void calcularIntereses();
     
+    public abstract void calcularDeudas();
 }

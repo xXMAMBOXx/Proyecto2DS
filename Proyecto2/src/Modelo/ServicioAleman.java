@@ -70,6 +70,17 @@ public class ServicioAleman extends ServicioAmortizacion {
         super.asignarInteresesTotal();
   
     }
+    
+    @Override
+    public void calcularDeudas(){
+        double deuda=this.montoPrestamoV;
+        this.deudas.add(deuda);
+        for(int i=0;i!=this.periodos;i++){
+            System.err.println(deuda); 
+            deuda-=this.amortizaciones.get(i);
+            this.deudas.add(deuda);
+        }
+    }
      
      
 }

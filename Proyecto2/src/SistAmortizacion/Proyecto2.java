@@ -24,11 +24,19 @@ public class Proyecto2 {
         
         ServicioAmortizacion serv;
         serv = new ServicioAleman(x);
-        serv.calcularCuotas();
-        System.err.println("cuota total:    "+serv.getCuotaCK());
+        //serv.calcularCuotas();
+        //System.err.println("cuota total:    "+serv.getCuotaCK());
         //serv.calcularAmortizaciones();System.err.println("cuotaaa:    "+serv.getAmortizacionCK());
        //serv.calcularIntereses();
         //System.err.println(serv.getInteresSK());
+        serv.calcularAmortizaciones();
+        //serv.calcularCuotas();
+        //serv.calcularDeudas();
+        //serv.
+        
+        
+        serv.calcularDeudas();
+        
     }
     
 }
