@@ -1,5 +1,3 @@
-
-
 package Modelo;
 
 import DTOs.DTOServicioAmortizacion;
@@ -20,8 +18,8 @@ public class ServicioFrances extends ServicioAmortizacion {
     }
       
     
-    private double calcularAmortizacionVk(int k){
-        return  this.calcularCuota()/(Math.pow((1 + this.interesAnual),this.periodos + 1 - k));
+    private double calcularAmortizacionVk(int periodo){
+        return  this.calcularCuota()/(Math.pow((1 + this.interesAnual),this.periodos + 1 - periodo));
         
     }
     

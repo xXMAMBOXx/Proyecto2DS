@@ -29,10 +29,9 @@ public class ServicioAleman extends ServicioAmortizacion {
     
     private double calcularC1(){
         return this.calcularAmortizacionVk()+this.interesAnual*this.montoPrestamoV;
-        
     }
     
-     @Override
+    @Override
     public void calcularCuotas(){
         this.cuotas.add(this.calcularC1());
        

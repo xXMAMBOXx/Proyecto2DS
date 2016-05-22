@@ -9,17 +9,18 @@ import java.util.ArrayList;
 
 public abstract class ServicioAmortizacion {
     
-    double montoPrestamoV;
-    int periodos;
-    double interesAnual;
-    double interesTotal;//ssss
-    double cuotaCK;
-    double amortizacionRealVK;
-    double cuotaInteresSK;
-    ArrayList<Double> intereses;
-    ArrayList<Double> amortizaciones;
-    ArrayList<Double> cuotas;
-    ArrayList<Double> deudas;
+    protected double montoPrestamoV;
+    protected int periodos;
+    protected double interesAnual;
+    protected double interesTotal;//ssss
+    protected double cuotaCK;
+    protected double amortizacionRealVK;
+    protected double cuotaInteresSK;
+    
+    protected ArrayList<Double> intereses;
+    protected ArrayList<Double> amortizaciones;
+    protected ArrayList<Double> cuotas;
+    protected ArrayList<Double> deudas;
     
     public ServicioAmortizacion(DTOServicioAmortizacion servicio){
         
@@ -31,16 +32,6 @@ public abstract class ServicioAmortizacion {
         this.amortizaciones=new ArrayList<Double>();
         this.intereses=new ArrayList<Double>();
         this.deudas=new ArrayList<Double>();
-    }
-    
-    
-    public boolean verificarV(){
-        
-        double v=0;
-        for(int k=1;k!=this.periodos;k++){
-            System.out.println(v);
-        }
-        return true;
     }
          
     public double getCuotaCK(){
@@ -101,7 +92,7 @@ public abstract class ServicioAmortizacion {
     }
     
     
-     public abstract double calcularCuotaInteresN(int periodo);
+    public abstract double calcularCuotaInteresN(int periodo);
     
     public abstract void calcularAmortizaciones();
     

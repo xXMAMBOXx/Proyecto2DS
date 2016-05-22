@@ -37,8 +37,6 @@ public class Proyecto2 {
         
        // serv.calcularDeudas();
         
-        serv.verificarV();
-        
     }
     
 }
