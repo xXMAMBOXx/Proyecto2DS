@@ -20,7 +20,7 @@ public class Proyecto2 {
 
     /**
      * @param args the command line arguments
-     */
+     
     public static void main(String[] args) {
         DTOs.DTOServicioAmortizacion x=new DTOServicioAmortizacion(1000000,5, 0.15);
         
@@ -38,5 +38,5 @@ public class Proyecto2 {
        // serv.calcularDeudas();
         
     }
-    
+    */
 }

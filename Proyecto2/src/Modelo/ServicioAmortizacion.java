@@ -54,6 +54,7 @@ public abstract class ServicioAmortizacion {
     protected void asignarCuotaTotal(){
         this.cuotaCK=0;
         for(double i: this.cuotas){
+            System.err.println("is"+i);
             this.cuotaCK+=i;
         }
     }
@@ -98,5 +99,20 @@ public abstract class ServicioAmortizacion {
     
     public abstract void calcularCuotas();
     
-      
+    public ArrayList<Double> getDeudas(){
+        return this.deudas;
+    }
+    
+     public ArrayList<Double> getCuotas(){
+        return this.cuotas;
+    }   
+    
+    public ArrayList<Double> getAmortizaciones(){
+        return this.amortizaciones;
+    }
+    
+     public ArrayList<Double> getIntereses(){
+        return this.intereses;
+    } 
+     
 }

@@ -34,8 +34,7 @@ public class ServicioAleman extends ServicioAmortizacion {
     @Override
     public void calcularCuotas(){
         this.cuotas.add(this.calcularC1());
-       
-        for (int i=0;i<this.periodos;i++){
+        for (int i=0;i<this.periodos-1;i++){
             this.cuotas.add(this.cuotas.get(i)-(this.interesAnual*this.calcularAmortizacionVk()));
         }   
         super.asignarCuotaTotal();
@@ -43,7 +42,8 @@ public class ServicioAleman extends ServicioAmortizacion {
     
      @Override 
      public void calcularAmortizaciones(){
-         for (int i=0;i<this.periodos;i++){    
+         for (int i=0;i<this.periodos;i++){ 
+             System.err.println(this.calcularAmortizacionVk());
             this.amortizaciones.add(this.calcularAmortizacionVk());
         }  
         super.asignarAmortizacionTotal();
