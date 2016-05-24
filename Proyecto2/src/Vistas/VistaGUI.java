@@ -257,7 +257,7 @@ public class VistaGUI extends javax.swing.JFrame {
         dto.setInteres((double)this.interes.getValue()/100.0);
         
         //controller
-        ServicioAmortizacion serv= new ServicioFrances(dto);
+        ServicioAmortizacion serv= new ServicioAleman(dto);
         serv.calcularAmortizaciones();
         serv.calcularCuotas();
         serv.calcularDeudas();

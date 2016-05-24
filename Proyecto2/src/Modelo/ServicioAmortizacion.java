@@ -12,7 +12,7 @@ public abstract class ServicioAmortizacion {
     protected double montoPrestamoV;
     protected int periodos;
     protected double interesAnual;
-    protected double interesTotal;//ssss
+    protected double interesTotal;
     protected double cuotaCK;
     protected double amortizacionRealVK;
     protected double cuotaInteresSK;
@@ -54,7 +54,6 @@ public abstract class ServicioAmortizacion {
     protected void asignarCuotaTotal(){
         this.cuotaCK=0;
         for(double i: this.cuotas){
-            System.err.println("is"+i);
             this.cuotaCK+=i;
         }
     }

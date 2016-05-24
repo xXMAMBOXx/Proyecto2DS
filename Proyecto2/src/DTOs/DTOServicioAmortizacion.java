@@ -2,7 +2,6 @@ package DTOs;
 
 import java.util.ArrayList;
 
-
 public class DTOServicioAmortizacion {
     
     private String nombre;
@@ -17,19 +16,18 @@ public class DTOServicioAmortizacion {
     private ArrayList<Double> amortizaciones;
     private ArrayList<Double> cuotas;
     private ArrayList<Double> deudas;
-    
-    
+     
     public DTOServicioAmortizacion(){
         this.intereses= new ArrayList<Double>();
         this.amortizaciones= new ArrayList<Double>();
         this.cuotas= new ArrayList<Double>();
         this.deudas= new ArrayList<Double>();
     }
-     
-    
+       
     public void setNombre(String nombre){
         this.nombre=nombre;
     }
+    
     public String getNombre(){
         return this.nombre;
     }
@@ -40,8 +38,7 @@ public class DTOServicioAmortizacion {
     public double getMontoPrestamo(){
         return this.montoPrestamo;
     }
-    
-     
+      
     public void setPeriodos(int periodo){
         this.periodos=periodo;
     }
@@ -99,7 +96,6 @@ public class DTOServicioAmortizacion {
     public ArrayList<Double> getAmortizaciones(){
         return this.amortizaciones;
     }
-    
     
     public void setIntereses(ArrayList<Double> intereses){
         this.intereses=intereses;

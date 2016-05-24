@@ -1,31 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Modelo;
 
 import DTOs.DTOServicioAmortizacion;
 
-/**
- *
- * @author xXMAMBOXx
- */
 public class ServicioAleman extends ServicioAmortizacion {
     
     public ServicioAleman(DTOServicioAmortizacion servicio){
-        super(servicio);
-        
+        super(servicio);       
     }
     
-     
      private double calcularAmortizacionVk(){
         return this.montoPrestamoV/this.periodos;
     }
-    
- 
-    
     
     private double calcularC1(){
         return this.calcularAmortizacionVk()+this.interesAnual*this.montoPrestamoV;
@@ -52,7 +37,5 @@ public class ServicioAleman extends ServicioAmortizacion {
     @Override
     public double calcularCuotaInteresN(int periodo){
          return (this.periodos-periodo+1)*(this.calcularInteresTotal()/this.periodos);   
-    }
-    
-     
+    } 
 }

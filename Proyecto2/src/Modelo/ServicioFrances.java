@@ -2,27 +2,19 @@ package Modelo;
 
 import DTOs.DTOServicioAmortizacion;
 
-/**
- *
- * @author xXMAMBOXx
- */
 public class ServicioFrances extends ServicioAmortizacion {
     
     public ServicioFrances(DTOServicioAmortizacion servicio){
-        super(servicio);
-        
+        super(servicio);    
     }
     
     private double calcularCuota(){
          return this.calcularInteresTotal() /(1 - 1/(Math.pow((1 + this.interesAnual),this.periodos + 1 - 1)));
     }
       
-    
     private double calcularAmortizacionVk(int periodo){
-        return  this.calcularCuota()/(Math.pow((1 + this.interesAnual),this.periodos + 1 - periodo));
-        
+        return  this.calcularCuota()/(Math.pow((1 + this.interesAnual),this.periodos + 1 - periodo));  
     }
-    
     
     @Override
     public void calcularCuotas(){
