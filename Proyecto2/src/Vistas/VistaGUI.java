@@ -176,28 +176,21 @@ public class VistaGUI extends javax.swing.JFrame {
         jLabel20.setText("Tipo moneda:");
 
         nombreResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreResultado.setText("P");
 
         primerResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        primerResultado.setText("P");
 
         segundoResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        segundoResultado.setText("P");
 
         montoResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        montoResultado.setText("P");
+        montoResultado.setText(" ");
 
         periodosResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        periodosResultado.setText("P");
 
         sistemaResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        sistemaResultado.setText("P");
 
         interesResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        interesResultado.setText("P");
 
         monedaResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        monedaResultado.setText("P");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
