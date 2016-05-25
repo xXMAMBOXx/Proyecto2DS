@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class DTOServicioAmortizacion {
     
+    private String tipo;
     private String nombre;
     private double montoPrestamo;
     private int periodos;
@@ -23,11 +24,17 @@ public class DTOServicioAmortizacion {
         this.cuotas= new ArrayList<Double>();
         this.deudas= new ArrayList<Double>();
     }
+    
+    public void setTipo(String tipo){
+        this.tipo=tipo;
+    }
+    public String getTipo(){
+        return  this.tipo;
+    }
        
     public void setNombre(String nombre){
         this.nombre=nombre;
     }
-    
     public String getNombre(){
         return this.nombre;
     }
