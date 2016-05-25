@@ -2,6 +2,7 @@ package Vistas;
 
 import Controladores.Controlador;
 import Controladores.IControlador;
+import DTOs.DTOCliente;
 import DTOs.DTOServicioAmortizacion;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -11,13 +12,16 @@ public class VistaGUI extends javax.swing.JFrame {
     
     private ArrayList<Double> intereses=new ArrayList<Double>();
     DefaultTableModel modelo = new DefaultTableModel();
+    private double [] cambios;
+    String tipoServicio;
     
     public VistaGUI() {
         
         initComponents();
-        this.añadirColumnas();
-        
-       
+        this.añadirColumnas();   
+        this.tablaMontos.setVisible(false);
+        this.cambios=new double[2];
+        this.setCambios();
         
     }
     
@@ -50,6 +54,22 @@ public class VistaGUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        nombreResultado = new javax.swing.JLabel();
+        primerResultado = new javax.swing.JLabel();
+        segundoResultado = new javax.swing.JLabel();
+        montoResultado = new javax.swing.JLabel();
+        periodosResultado = new javax.swing.JLabel();
+        sistemaResultado = new javax.swing.JLabel();
+        interesResultado = new javax.swing.JLabel();
+        monedaResultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,29 +127,14 @@ public class VistaGUI extends javax.swing.JFrame {
 
         tablaMontos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {},
+                {}
             },
             new String [] {
-                "Período", "Deuda Inicial", "Intereses", "Amortización", "Cuota"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         jScrollPane1.setViewportView(tablaMontos);
-        if (tablaMontos.getColumnModel().getColumnCount() > 0) {
-            tablaMontos.getColumnModel().getColumn(0).setHeaderValue("Período");
-            tablaMontos.getColumnModel().getColumn(1).setHeaderValue("Deuda Inicial");
-            tablaMontos.getColumnModel().getColumn(2).setHeaderValue("Intereses");
-            tablaMontos.getColumnModel().getColumn(3).setHeaderValue("Amortización");
-            tablaMontos.getColumnModel().getColumn(4).setHeaderValue("Cuota");
-        }
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Primer Apellido:");
@@ -146,6 +151,54 @@ public class VistaGUI extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Interes:");
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("Primer Apellido:");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setText("Segundo Apellido:");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setText("Nombre:");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setText("Monto Prestamo:");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setText("Periodos (Años):");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setText("Interes:");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel19.setText("Tipo Sistema:");
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel20.setText("Tipo moneda:");
+
+        nombreResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreResultado.setText("P");
+
+        primerResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        primerResultado.setText("P");
+
+        segundoResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        segundoResultado.setText("P");
+
+        montoResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        montoResultado.setText("P");
+
+        periodosResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        periodosResultado.setText("P");
+
+        sistemaResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sistemaResultado.setText("P");
+
+        interesResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        interesResultado.setText("P");
+
+        monedaResultado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        monedaResultado.setText("P");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,9 +209,8 @@ public class VistaGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(57, 57, 57)
-                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addGroup(layout.createSequentialGroup()
@@ -184,53 +236,122 @@ public class VistaGUI extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(primerApellido)))
                             .addComponent(solicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addGap(13, 13, 13)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jScrollPane3)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                                .addComponent(jLabel11)
-                                .addGap(200, 200, 200)
-                                .addComponent(jLabel10)
-                                .addGap(81, 81, 81))
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(montoResultado))
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel18))
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(interesResultado)
+                                    .addComponent(periodosResultado)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jLabel15)
+                                        .addComponent(jLabel14))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(segundoResultado)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(nombreResultado)
+                                                .addComponent(primerResultado))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel5)
+                                                        .addComponent(jLabel20))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(monedaResultado)
+                                                        .addComponent(sistemaResultado)))
+                                                .addComponent(jLabel10)))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(55, 55, 55)
-                            .addComponent(jLabel1))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(primerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(montoPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(jLabel1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(primerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(montoPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(sistemaResultado))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(monedaResultado)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel15)
+                                    .addComponent(nombreResultado))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel13)
+                                    .addComponent(primerResultado))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(segundoResultado))
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel16)
+                                    .addComponent(montoResultado))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel17)
+                                    .addComponent(periodosResultado))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel18)
+                                    .addComponent(interesResultado))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -245,19 +366,20 @@ public class VistaGUI extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel5)
-                                .addGap(47, 47, 47)
-                                .addComponent(jLabel6)
-                                .addGap(44, 44, 44))
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabel19))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel6))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addComponent(solicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -267,21 +389,38 @@ public class VistaGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void solicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarActionPerformed
-        //Ingresando datos al de DTOAmortización
+        //Ingresando datos al DTOCliente
+        DTOCliente dtoCliente=new DTOCliente();
+        dtoCliente.setNombre(this.nombre.getText());
+        dtoCliente.setPrimerApellido(this.primerApellido.getText());
+        dtoCliente.setSegundoApellido(this.apellido2.getText());
+        
+
+        //Ingresando datos al DTOAmortización
         DTOServicioAmortizacion dtoAmortizacion=new DTOServicioAmortizacion();
-        dtoAmortizacion.setTipo(this.eliminarAcento("Servicio"+this.tipoSistema.getSelectedValue()));
-        dtoAmortizacion.setNombre(this.nombre.getText()+this.primerApellido.getText()+this.apellido2.getText());
+        dtoAmortizacion.setTipo(this.eliminarAcento("Servicio"+this.tipoSistema.getSelectedValue()));this.tipoServicio=""+this.tipoSistema.getSelectedValue(); 
         dtoAmortizacion.setMontoPrestamo(Double.parseDouble(this.montoPrestamo.getText()));
         dtoAmortizacion.setPeriodos((int) this.periodos.getValue());
         dtoAmortizacion.setInteres((double)this.interes.getValue()/100.0);
+        dtoAmortizacion.setMoneda((String)this.tipoMoneda.getSelectedValue());
+        dtoAmortizacion.setCambio(this.cambioSeleccionado());
+        
         
         IControlador controlador =new Controlador();///FACTORY
-        controlador.solicitarPrestamo(dtoAmortizacion, null);
+        controlador.solicitarPrestamo(dtoAmortizacion, dtoCliente);
            
         this.cargarTabla(dtoAmortizacion);
+        this.resultadoConsulta(dtoAmortizacion, dtoCliente);
         
     }//GEN-LAST:event_solicitarActionPerformed
 
+    private void resultadoConsulta(DTOServicioAmortizacion amortizacion,DTOCliente cliente){
+        this.resetLabels();
+        this.setLabels(amortizacion, cliente);
+    }
+    
+    
+    
     private void cargarTabla(DTOServicioAmortizacion dto){
         
         int nPeriodo=(Integer)this.periodos.getValue();
@@ -310,7 +449,38 @@ public class VistaGUI extends javax.swing.JFrame {
             this.tablaMontos.setVisible(true);
     }
     
-    public void añadirColumnas(){
+     private void setLabels(DTOServicioAmortizacion servicio,DTOCliente cliente){
+        this.nombreResultado.setText(cliente.getNombre());
+        this.primerResultado.setText(cliente.getPrimerApellido());
+        this.segundoResultado.setText(cliente.getSegundoApellido());
+        this.monedaResultado.setText(servicio.getMoneda());
+        this.montoResultado.setText(servicio.getMontoPrestamo()+"");
+        this.periodosResultado.setText(""+servicio.getPeriodos());
+        this.sistemaResultado.setText("Servicio "+this.tipoServicio);
+        this.interesResultado.setText(""+servicio.getInteres());
+        
+    }
+    
+    private void resetLabels(){
+        this.nombreResultado.setText("");
+        this.primerResultado.setText("");
+        this.segundoResultado.setText("");
+        this.monedaResultado.setText("");
+        this.periodosResultado.setText("");
+        this.sistemaResultado.setText("");
+        this.interesResultado.setText("");
+        
+    }
+    
+    private void setCambios(){
+        this.cambios[0]=1;
+        this.cambios[1]=537.6;
+    }
+    private double cambioSeleccionado(){
+        return this.cambios[this.tipoMoneda.getSelectedIndex()];
+    }
+    
+    public final void añadirColumnas(){
          modelo.addColumn("Periodo");
          modelo.addColumn("Deuda Inicial");
          modelo.addColumn("Intereses");
@@ -327,22 +497,7 @@ public class VistaGUI extends javax.swing.JFrame {
     }
     return output;
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
     /**
      * @param args the command line arguments
      */
@@ -381,11 +536,20 @@ public class VistaGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido2;
     private javax.swing.JSpinner interes;
+    private javax.swing.JLabel interesResultado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -396,10 +560,17 @@ public class VistaGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel monedaResultado;
     private javax.swing.JTextField montoPrestamo;
+    private javax.swing.JLabel montoResultado;
     private javax.swing.JTextField nombre;
+    private javax.swing.JLabel nombreResultado;
     private javax.swing.JSpinner periodos;
+    private javax.swing.JLabel periodosResultado;
     private javax.swing.JTextField primerApellido;
+    private javax.swing.JLabel primerResultado;
+    private javax.swing.JLabel segundoResultado;
+    private javax.swing.JLabel sistemaResultado;
     private javax.swing.JButton solicitar;
     private javax.swing.JTable tablaMontos;
     private javax.swing.JList tipoMoneda;

@@ -16,6 +16,8 @@ public abstract class ServicioAmortizacion {
     protected double cuotaCK;
     protected double amortizacionRealVK;
     protected double cuotaInteresSK;
+    protected String moneda;
+    protected double cambio;
     
     protected ArrayList<Double> intereses;
     protected ArrayList<Double> amortizaciones;
@@ -23,10 +25,12 @@ public abstract class ServicioAmortizacion {
     protected ArrayList<Double> deudas;
     
     public ServicioAmortizacion(DTOServicioAmortizacion servicio){
-        
-        this.montoPrestamoV=servicio.getMontoPrestamo();
+        this.cambio=servicio.getCambio();
+        this.montoPrestamoV=servicio.getMontoPrestamo()*this.cambio;
         this.periodos=servicio.getPeriodos();
         this.interesAnual=servicio.getInteres();
+        this.moneda=servicio.getMoneda();
+        
         
         this.cuotas=new ArrayList<Double>();
         this.amortizaciones=new ArrayList<Double>();
@@ -48,7 +52,7 @@ public abstract class ServicioAmortizacion {
     }
     
     protected double calcularInteresTotal(){
-        return this.montoPrestamoV*this.interesAnual;
+        return (this.montoPrestamoV*this.interesAnual);
     }
     
     protected void asignarCuotaTotal(){

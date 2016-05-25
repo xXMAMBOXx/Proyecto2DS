@@ -9,11 +9,11 @@ public class ServicioFrances extends ServicioAmortizacion {
     }
     
     private double calcularCuota(){
-         return this.calcularInteresTotal() /(1 - 1/(Math.pow((1 + this.interesAnual),this.periodos + 1 - 1)));
+         return (this.calcularInteresTotal() /(1 - 1/(Math.pow((1 + this.interesAnual),this.periodos + 1 - 1))));
     }
       
     private double calcularAmortizacionVk(int periodo){
-        return  this.calcularCuota()/(Math.pow((1 + this.interesAnual),this.periodos + 1 - periodo));  
+        return  (this.calcularCuota()/(Math.pow((1 + this.interesAnual),this.periodos + 1 - periodo)));  
     }
     
     @Override
@@ -36,7 +36,7 @@ public class ServicioFrances extends ServicioAmortizacion {
      
     @Override
     public double calcularCuotaInteresN(int periodo){
-           return (this.calcularCuota())*(1 - 1/Math.pow(1 + this.interesAnual,this.periodos + 1 - periodo)); 
+           return ((this.calcularCuota())*(1 - 1/Math.pow(1 + this.interesAnual,this.periodos + 1 - periodo))); 
     }
  
 }

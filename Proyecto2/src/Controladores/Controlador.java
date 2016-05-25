@@ -26,18 +26,18 @@ public class Controlador implements IControlador{
 
     @Override
     public Cliente crearCliente(DTOCliente dtoCliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cliente cliente=new Cliente(dtoCliente);////FACTORY
+        return cliente;
     }
 
     @Override
     public void solicitarPrestamo(DTOServicioAmortizacion dtoAmortizacion, DTOCliente dtoCliente) {
-        
+        //Creando Servicio
         ServicioAmortizacion servicio= this.crearServicio(dtoAmortizacion);
         servicio.calcularAmortizaciones();
         servicio.calcularCuotas();
         servicio.calcularDeudas();
         servicio.calcularIntereses();
-        
         //cálculo lógica de negocios
         dtoAmortizacion.setDeudas(servicio.getDeudas());
         dtoAmortizacion.setCuotas(servicio.getCuotas());
@@ -46,6 +46,12 @@ public class Controlador implements IControlador{
         dtoAmortizacion.setInteresTotal(servicio.getInteresSK());
         dtoAmortizacion.setAmortizacionVK(servicio.getAmortizacionCK());
         dtoAmortizacion.setCuotaCK(servicio.getCuotaCK());
+        
+        //Creando Cliente
+        Cliente cliente=this.crearCliente(dtoCliente);
+        //añadiendo el servicio amortizacion al cliente
+        cliente.agregarServicio(servicio);
+        
         
     }
     

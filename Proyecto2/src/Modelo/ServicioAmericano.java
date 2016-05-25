@@ -13,7 +13,7 @@ public class ServicioAmericano extends ServicioAmortizacion {
     public void calcularCuotas(){
         for (int i=0;i<this.periodos;i++){      
             if(this.periodos==i+1){
-                this.cuotas.add(this.montoPrestamoV+this.calcularInteresTotal());
+                this.cuotas.add(((this.montoPrestamoV+this.calcularInteresTotal())));
             }
             else{
                   this.cuotas.add(this.calcularInteresTotal());

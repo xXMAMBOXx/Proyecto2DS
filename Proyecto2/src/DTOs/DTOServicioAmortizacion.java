@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class DTOServicioAmortizacion {
     
     private String tipo;
-    private String nombre;
+    private String moneda;
+    private double cambio;
     private double montoPrestamo;
     private int periodos;
     private double interes;
@@ -25,18 +26,25 @@ public class DTOServicioAmortizacion {
         this.deudas= new ArrayList<Double>();
     }
     
+    public void setCambio(double cambio){
+        this.cambio=cambio;
+    }
+    public double getCambio(){
+        return this.cambio;
+    }
+    
+    public void setMoneda(String moneda){
+        this.moneda=moneda;
+    }
+    public String getMoneda(){
+        return this.moneda;
+    }
+    
     public void setTipo(String tipo){
         this.tipo=tipo;
     }
     public String getTipo(){
         return  this.tipo;
-    }
-       
-    public void setNombre(String nombre){
-        this.nombre=nombre;
-    }
-    public String getNombre(){
-        return this.nombre;
     }
     
     public void setMontoPrestamo(double montoPrestamo){

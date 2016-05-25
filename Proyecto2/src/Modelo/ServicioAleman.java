@@ -9,18 +9,18 @@ public class ServicioAleman extends ServicioAmortizacion {
     }
     
      private double calcularAmortizacionVk(){
-        return this.montoPrestamoV/this.periodos;
+        return (this.montoPrestamoV/this.periodos);
     }
     
     private double calcularC1(){
-        return this.calcularAmortizacionVk()+this.interesAnual*this.montoPrestamoV;
+        return (this.calcularAmortizacionVk()+this.interesAnual*this.montoPrestamoV);
     }
     
     @Override
     public void calcularCuotas(){
         this.cuotas.add(this.calcularC1());
         for (int i=0;i<this.periodos-1;i++){
-            this.cuotas.add(this.cuotas.get(i)-(this.interesAnual*this.calcularAmortizacionVk()));
+            this.cuotas.add((this.cuotas.get(i)-(this.interesAnual*this.calcularAmortizacionVk())));
         }   
         super.asignarCuotaTotal();
     }
@@ -28,7 +28,6 @@ public class ServicioAleman extends ServicioAmortizacion {
      @Override 
      public void calcularAmortizaciones(){
          for (int i=0;i<this.periodos;i++){ 
-             System.err.println(this.calcularAmortizacionVk());
             this.amortizaciones.add(this.calcularAmortizacionVk());
         }  
         super.asignarAmortizacionTotal();
@@ -36,6 +35,6 @@ public class ServicioAleman extends ServicioAmortizacion {
      
     @Override
     public double calcularCuotaInteresN(int periodo){
-         return (this.periodos-periodo+1)*(this.calcularInteresTotal()/this.periodos);   
+         return ((this.periodos-periodo+1)*(this.calcularInteresTotal()/this.periodos));   
     } 
 }
