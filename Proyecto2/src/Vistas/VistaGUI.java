@@ -594,3 +594,4 @@ public class VistaGUI extends javax.swing.JFrame {
     private javax.swing.JList tipoSistema;
     // End of variables declaration//GEN-END:variables
 }
+//ss
