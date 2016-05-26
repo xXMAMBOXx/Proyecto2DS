@@ -13,6 +13,7 @@ public class VistaGUI extends javax.swing.JFrame {
     private ArrayList<Double> intereses=new ArrayList<Double>();
     DefaultTableModel modelo = new DefaultTableModel();
     private double [] cambios;
+    private int cambioSeleccionado;
     String tipoServicio;
     
     public VistaGUI() {
@@ -22,6 +23,7 @@ public class VistaGUI extends javax.swing.JFrame {
         this.tablaMontos.setVisible(false);
         this.cambios=new double[2];
         this.setCambios();
+     
         
     }
     
@@ -255,32 +257,31 @@ public class VistaGUI extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(interesResultado)
                                     .addComponent(periodosResultado)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel13)
-                                        .addComponent(jLabel15)
-                                        .addComponent(jLabel14))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(segundoResultado)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(nombreResultado)
-                                                .addComponent(primerResultado))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel5)
-                                                        .addComponent(jLabel20))
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(monedaResultado)
-                                                        .addComponent(sistemaResultado)))
-                                                .addComponent(jLabel10)))))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(123, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel14))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(segundoResultado)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nombreResultado)
+                                            .addComponent(primerResultado))
+                                        .addGap(237, 237, 237)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel5)
+                                                    .addComponent(jLabel20))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(monedaResultado)
+                                                    .addComponent(sistemaResultado)))
+                                            .addComponent(jLabel10)))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,9 +348,9 @@ public class VistaGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(periodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(periodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,14 +389,13 @@ public class VistaGUI extends javax.swing.JFrame {
         dtoCliente.setPrimerApellido(this.primerApellido.getText());
         dtoCliente.setSegundoApellido(this.apellido2.getText());
         
-
+        this.cambioSeleccionado=this.tipoMoneda.getSelectedIndex();
         //Ingresando datos al DTOAmortización
         DTOServicioAmortizacion dtoAmortizacion=new DTOServicioAmortizacion();
         dtoAmortizacion.setTipo(this.eliminarAcento("Servicio"+this.tipoSistema.getSelectedValue()));this.tipoServicio=""+this.tipoSistema.getSelectedValue(); 
         dtoAmortizacion.setMontoPrestamo(Double.parseDouble(this.montoPrestamo.getText()));
         dtoAmortizacion.setPeriodos((int) this.periodos.getValue());
         dtoAmortizacion.setInteres((double)this.interes.getValue()/100.0);
-        dtoAmortizacion.setMoneda((String)this.tipoMoneda.getSelectedValue());
         dtoAmortizacion.setCambio(this.cambioSeleccionado());
         
         
@@ -415,7 +415,7 @@ public class VistaGUI extends javax.swing.JFrame {
     
     
     private void cargarTabla(DTOServicioAmortizacion dto){
-        
+        limpiarTabla();
         int nPeriodo=(Integer)this.periodos.getValue();
         this.tablaMontos.setModel(modelo);
         Double [] celdas = new Double[5];
@@ -425,19 +425,19 @@ public class VistaGUI extends javax.swing.JFrame {
         double nCelda=0;
         
         for(int i=0;i!=nPeriodo;i++){
-            celdas[0]=nCelda+1; 
-            celdas[1]=dto.getDeudas().get(i);
-            celdas[2]=dto.getIntereses().get(i);
-            celdas[3]=dto.getAmortizaciones().get(i);
-            celdas[4]=dto.getCuotas().get(i);
+            celdas[0]=(nCelda+1); 
+            celdas[1]=this.arreglarMonto(dto.getDeudas().get(i)/this.cambios[this.cambioSeleccionado]);
+            celdas[2]=this.arreglarMonto(dto.getIntereses().get(i)/this.cambios[this.cambioSeleccionado]);
+            celdas[3]=this.arreglarMonto(dto.getAmortizaciones().get(i)/this.cambios[this.cambioSeleccionado]);
+            celdas[4]=this.arreglarMonto(dto.getCuotas().get(i)/this.cambios[this.cambioSeleccionado]);
             nCelda++;    
             modelo.addRow(celdas);
         }
             resultado[0]="Total"; 
             resultado[1]=" ";
-            resultado[2]=String.valueOf(dto.getInteresTotal());
-            resultado[3]=String.valueOf(dto.getAmortizacionVK());
-            resultado[4]=String.valueOf(dto.getCuotaCK());
+            resultado[2]=String.valueOf(this.arreglarMonto(dto.getInteresTotal()/this.cambios[this.cambioSeleccionado]));
+            resultado[3]=String.valueOf(this.arreglarMonto(dto.getAmortizacionVK()/this.cambios[this.cambioSeleccionado]));
+            resultado[4]=String.valueOf(this.arreglarMonto(dto.getCuotaCK()/this.cambios[this.cambioSeleccionado]));
             modelo.addRow(resultado);
             this.tablaMontos.setVisible(true);
     }
@@ -446,11 +446,11 @@ public class VistaGUI extends javax.swing.JFrame {
         this.nombreResultado.setText(cliente.getNombre());
         this.primerResultado.setText(cliente.getPrimerApellido());
         this.segundoResultado.setText(cliente.getSegundoApellido());
-        this.monedaResultado.setText(servicio.getMoneda());
+        this.monedaResultado.setText("Colones");
         this.montoResultado.setText(servicio.getMontoPrestamo()+"");
         this.periodosResultado.setText(""+servicio.getPeriodos());
         this.sistemaResultado.setText("Servicio "+this.tipoServicio);
-        this.interesResultado.setText(""+servicio.getInteres());
+        this.interesResultado.setText(this.arreglarPorcentaje(servicio.getInteres()*100)+" %");
         
     }
     
@@ -465,6 +465,30 @@ public class VistaGUI extends javax.swing.JFrame {
         
     }
     
+    private void limpiarTabla(){      
+        int x=modelo.getRowCount();
+        for (int i=0;i<=x;i++){
+            if(modelo.getRowCount()!=0){
+                modelo.removeRow(0);
+            }
+        }
+       
+    }
+    
+    private String arreglarPorcentaje(double x){
+        return String.valueOf(x).substring(0,2);
+        
+    }
+    private double arreglarMonto(double monto){
+        double result=monto;
+        System.err.println(String.valueOf(monto).length());
+        if(String.valueOf(monto).length()>10){
+                result=Double.parseDouble(String.valueOf(monto).substring(0,10));
+        }
+        return result;
+    }
+    
+            
     private void setCambios(){
         this.cambios[0]=1;
         this.cambios[1]=537.6;

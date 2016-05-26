@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class DTOServicioAmortizacion {
     
     private String tipo;
-    private String moneda;
     private double cambio;
     private double montoPrestamo;
     private int periodos;
@@ -32,14 +31,7 @@ public class DTOServicioAmortizacion {
     public double getCambio(){
         return this.cambio;
     }
-    
-    public void setMoneda(String moneda){
-        this.moneda=moneda;
-    }
-    public String getMoneda(){
-        return this.moneda;
-    }
-    
+       
     public void setTipo(String tipo){
         this.tipo=tipo;
     }
