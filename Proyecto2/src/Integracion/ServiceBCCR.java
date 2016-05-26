@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServiciosExternos;
+package Integracion;
 
 
 /**
@@ -27,10 +27,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 
 
-public class ServiceBCCR {
+public class ServiceBCCR implements ServicioBancario {
     
     //obtener el tipo de cambio del web service del BCCR
-    private String getTipoCambio(){
+    @Override
+    public String getTipoCambio(){
         Document doc = null;
         String fecha = getFechaActual();
         
