@@ -3,19 +3,15 @@ package Observer;
 
 import DTOs.DTOCliente;        
 import DTOs.DTOServicioAmortizacion;         
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.jdom2.Attribute;
+import java.io.FileWriter;
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-import org.xml.sax.InputSource;
 
 public class BitacoraXML implements IEscritor {
     private static String nombreArchivo="bitacoraXML.xml";
@@ -24,35 +20,20 @@ public class BitacoraXML implements IEscritor {
         
     }
     
+    @Override
      public void crearArchivo() {
-        try{
-            
-            Element elemento = new Element ( "BitacoraXML" );
-            Element elementoHijo=new Element ( "Nombre" );
-            elementoHijo.setText( "marvin" );
-            elemento.addContent( elementoHijo );
+         String sFichero ="src\\Data\\"+nombreArchivo ;
+         File fichero = new File(sFichero);
+         if (!fichero.exists()){
+            try{
 
-            
-           /* elemento.setText( "contenidoEntreTag" );
-            elemento.setAttribute ( "PrimerApellido", "contenidoAtributo" );
-            elemento.setText( "contenidoEntreTag" );
-            elemento.setAttribute ( "SegundoApellido", "contenidoAtributo" );
-            elemento.setText( "contenidoEntreTag" );
-            elemento.setAttribute ( "MontoPrestamo", "contenidoAtributo" );
-            elemento.setText( "contenidoEntreTag" );
-            elemento.setAttribute ( "Periodos", "contenidoAtributo" );
-            elemento.setText( "contenidoEntreTag" );
-            elemento.setAttribute ( "Interes", "contenidoAtributo" );
-            elemento.setText( "contenidoEntreTag" );
-            elemento.setAttribute ( "TipoSistema", "contenidoAtributo" );
-            elemento.setText( "contenidoEntreTag" );
-            elemento.setAttribute ( "TipoMoneda", "contenidoAtributo" );
-            elemento.setText( "contenidoEntreTag" );*/
-            XMLOutputter outputter = new XMLOutputter( Format.getPrettyFormat() );
-            outputter.output ( new Document( elemento ), new FileOutputStream( "archivo.xml" ) );
-        
-            }catch (Exception e){
-                e.getMessage();
+                Element elemento = new Element ( "BitacoraXML" );
+                XMLOutputter outputter = new XMLOutputter( Format.getPrettyFormat() );
+                outputter.output ( new Document( elemento ), new FileOutputStream( "src\\Data\\"+nombreArchivo ) );
+
+                }catch (Exception e){
+                    e.getMessage();
+                }
             }
      }
     /*@Override
@@ -63,17 +44,58 @@ public class BitacoraXML implements IEscritor {
     @Override
     public void escribirMovimiento(DTOServicioAmortizacion servicio, DTOCliente cliente) {
         try {
-            this.crearArchivo();
-            DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            // Procesamos el fichero XML y obtenemos nuestro objeto Document
-            Document doc = (Document) documentBuilder.parse(new InputSource(new FileInputStream("archivo.xml")));
+            SAXBuilder builder = new SAXBuilder();
+            FileInputStream xmlFile = new FileInputStream ("src\\Data\\"+nombreArchivo  );
+            Document document = (Document) builder.build( xmlFile );
+            Element elemento=document.getRootElement();
+             // Obtenemos el objeto Document   
+            Element element=new Element ( "NuevosDatos" );
+            element.setText( "------------------------------------------------" );
+            elemento.addContent( element );
             
             
+            Element elemento1=new Element ( "Nombre" );
+            elemento1.setText( cliente.getNombre() );
+            elemento.addContent( elemento1 );
             
+            Element elemento2=new Element ( "PrimerApellido" );
+            elemento2.setText( cliente.getPrimerApellido() );
+            elemento.addContent( elemento2);
+            
+             Element elemento3=new Element ( "SegundoApellido" );
+            elemento3.setText( cliente.getSegundoApellido() );
+            elemento.addContent( elemento3);
+         
+            
+            Element elemento5=new Element ( "MontoPrestamo" );
+            elemento5.setText( servicio.getMontoPrestamo()+"" );
+            elemento.addContent( elemento5);
+            
+            Element elemento6=new Element ( "Periodos" );
+            elemento6.setText( servicio.getPeriodos()+"");
+            elemento.addContent( elemento6);
+            
+             Element elemento7=new Element ( "Interes" );
+            elemento7.setText((servicio.getInteres()*100.0)+"" );
+            elemento.addContent( elemento7);
+            
+              Element elemento8=new Element ( "TipoSistema" );
+            elemento8.setText( servicio.getTipo());
+            elemento.addContent( elemento8);
+            
+            Element elemento9=new Element ( "TipoMoneda" );
+            elemento9.setText( "Colon" );
+            elemento.addContent( elemento9);
+            
+            XMLOutputter xmlOutput = new XMLOutputter();
+            xmlOutput.setFormat(Format.getPrettyFormat());
+            xmlOutput.output(document, new FileWriter("src\\Data\\"+nombreArchivo ));
+   
         } catch (Exception ex) {
             ex.toString();
         }
     }
+    
         
 
 }

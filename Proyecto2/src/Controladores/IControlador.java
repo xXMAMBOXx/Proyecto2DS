@@ -7,10 +7,12 @@ import Modelo.ServicioAmortizacion;
 
 public interface IControlador { 
     
-    public void actualizarBitacora(DTOServicioAmortizacion dtoAmortizacion);
+  
+    public void actualizarBitacora(DTOServicioAmortizacion dtoAmortizacion,DTOCliente cliente);
     public ServicioAmortizacion crearServicio(DTOServicioAmortizacion dtoAmortizacion);
     public Cliente crearCliente(DTOCliente dtoCliente);
     public void solicitarPrestamo(DTOServicioAmortizacion dtoAmortizacion,DTOCliente dtoCliente);
+    public String getServicioFecha();
     
     
 }

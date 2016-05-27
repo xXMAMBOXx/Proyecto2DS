@@ -2,6 +2,8 @@ package Controladores;
 
 import DTOs.DTOCliente;
 import DTOs.DTOServicioAmortizacion;
+import Integracion.FechaSocket;
+import Integracion.IServicioFecha;
 import Modelo.Cliente;
 import Modelo.ServicioAleman;
 import Modelo.ServicioAmortizacion;
@@ -16,9 +18,10 @@ public class Controlador implements IControlador{
     
 
     @Override
-    public void actualizarBitacora(DTOServicioAmortizacion dtoAmortizacion) {
-        IEscritor e= new BitacoraXML();
-        e.escribirMovimiento(dtoAmortizacion, null);
+    public void actualizarBitacora(DTOServicioAmortizacion dtoAmortizacion,DTOCliente cliente) {
+        IEscritor escritor= new BitacoraXML();// aqui va el subject?
+        escritor.crearArchivo();
+        escritor.escribirMovimiento(dtoAmortizacion, cliente);
     }
 
     @Override
@@ -35,7 +38,7 @@ public class Controlador implements IControlador{
 
     @Override
     public void solicitarPrestamo(DTOServicioAmortizacion dtoAmortizacion, DTOCliente dtoCliente) {
-        this.actualizarBitacora(dtoAmortizacion);
+        this.actualizarBitacora(dtoAmortizacion,dtoCliente);
         //Creando Servicio
         ServicioAmortizacion servicio= this.crearServicio(dtoAmortizacion);
         servicio.calcularAmortizaciones();
@@ -58,5 +61,11 @@ public class Controlador implements IControlador{
         
         
     }
+
+    @Override
+    public String getServicioFecha() {
+        IServicioFecha service = new FechaSocket();
+        return service.getFecha();
+   }
     
 }

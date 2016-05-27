@@ -8,7 +8,8 @@ public interface IEscritor {
     
     
     //public IEscritor(Subject subject);
-    
+    public void crearArchivo();
     public void escribirMovimiento(DTOServicioAmortizacion servicio,DTOCliente cliente);
+ 
     
 }
