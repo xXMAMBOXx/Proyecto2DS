@@ -24,17 +24,18 @@ public class BitacoraXML implements IEscritor {
      public void crearArchivo() {
          String sFichero ="src\\Data\\"+nombreArchivo ;
          File fichero = new File(sFichero);
-         if (!fichero.exists()){
-            try{
+         if (fichero.exists()){
+             return;
+         }
+         try{
 
-                Element elemento = new Element ( "BitacoraXML" );
-                XMLOutputter outputter = new XMLOutputter( Format.getPrettyFormat() );
-                outputter.output ( new Document( elemento ), new FileOutputStream( "src\\Data\\"+nombreArchivo ) );
-
-                }catch (Exception e){
-                    e.getMessage();
-                }
-            }
+            Element elemento = new Element ( "BitacoraXML" );
+            XMLOutputter outputter = new XMLOutputter( Format.getPrettyFormat() );
+            outputter.output ( new Document( elemento ), new FileOutputStream( "src\\Data\\"+nombreArchivo ) );
+            }catch (Exception e){
+                e.getMessage();
+        }
+            
      }
     /*@Override
     public IEscritor <error>(Subject subject) {

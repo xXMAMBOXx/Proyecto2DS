@@ -7,6 +7,7 @@ import Integracion.IServicioFecha;
 import Modelo.Cliente;
 import Modelo.ServicioAleman;
 import Modelo.ServicioAmortizacion;
+import Observer.BitacoraCSV;
 import Observer.BitacoraXML;
 import Observer.IEscritor;
 
@@ -19,7 +20,7 @@ public class Controlador implements IControlador{
 
     @Override
     public void actualizarBitacora(DTOServicioAmortizacion dtoAmortizacion,DTOCliente cliente) {
-        IEscritor escritor= new BitacoraXML();// aqui va el subject?
+        IEscritor escritor= new BitacoraCSV();// aqui va el subject?
         escritor.crearArchivo();
         escritor.escribirMovimiento(dtoAmortizacion, cliente);
     }
