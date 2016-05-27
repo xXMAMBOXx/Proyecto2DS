@@ -5,6 +5,8 @@ import DTOs.DTOServicioAmortizacion;
 import Modelo.Cliente;
 import Modelo.ServicioAleman;
 import Modelo.ServicioAmortizacion;
+import Observer.BitacoraXML;
+import Observer.IEscritor;
 
 public class Controlador implements IControlador{
     
@@ -15,7 +17,8 @@ public class Controlador implements IControlador{
 
     @Override
     public void actualizarBitacora(DTOServicioAmortizacion dtoAmortizacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        IEscritor e= new BitacoraXML();
+        e.escribirMovimiento(dtoAmortizacion, null);
     }
 
     @Override
@@ -32,6 +35,7 @@ public class Controlador implements IControlador{
 
     @Override
     public void solicitarPrestamo(DTOServicioAmortizacion dtoAmortizacion, DTOCliente dtoCliente) {
+        this.actualizarBitacora(dtoAmortizacion);
         //Creando Servicio
         ServicioAmortizacion servicio= this.crearServicio(dtoAmortizacion);
         servicio.calcularAmortizaciones();

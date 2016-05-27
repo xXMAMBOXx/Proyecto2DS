@@ -7,6 +7,8 @@
 package SistAmortizacion;
 
 import DTOs.DTOServicioAmortizacion;
+import Integracion.FechaSocket;
+import Integracion.IServicioFecha;
 import Modelo.ServicioAmortizacion;
 import Modelo.ServicioAleman;
 import Modelo.ServicioAmericano;
@@ -20,23 +22,11 @@ public class Proyecto2 {
 
     /**
      * @param args the command line arguments
-     
+      
     public static void main(String[] args) {
-        DTOs.DTOServicioAmortizacion x=new DTOServicioAmortizacion(1000000,5, 0.15);
+        IServicioFecha ser= new FechaSocket();
+        System.err.println(ser.getFecha());
         
-        ServicioAmortizacion serv;
-        serv = new ServicioAmericano(x);
-       // serv.calcularCuotas();
-        
-       // serv.calcularAmortizaciones();
-        
-        
-        
-        //serv.calcularCuotas();
-       // serv.calcularCuotas();
-        
-       // serv.calcularDeudas();
-        
-    }
-    */
+    }*/
+   
 }
