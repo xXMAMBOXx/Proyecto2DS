@@ -21,14 +21,18 @@ import java.util.logging.Logger;
  *
  * @author xXMAMBOXx
  */
-public class BitacoraCSV implements IEscritor {
+public class BitacoraCSV extends IEscritor {
     
-     private static String nombreArchivo="bitacoraCSV.csv";
+    public BitacoraCSV(Subject subject){
+        super("bitacoraCSV.csv");
+        this.subject = subject;
+        this.subject.attach(this);
+    }
       
     @Override
      public void crearArchivo() {
          
-         String outputFile = "src\\Data\\"+nombreArchivo ;
+         String outputFile = "src\\Data\\"+getNombreArchivo() ;
          File fichero = new File(outputFile);
          if(fichero.exists()){
              return;
@@ -48,7 +52,7 @@ public class BitacoraCSV implements IEscritor {
     @Override
     public void escribirMovimiento(DTOServicioAmortizacion servicio, DTOCliente cliente) {
         try {
-            String outputFile = "src\\Data\\"+nombreArchivo ;
+            String outputFile = "src\\Data\\"+getNombreArchivo() ;
             CsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, true), ','); 
             csvOutput.write(cliente.getNombre());
             csvOutput.write(cliente.getPrimerApellido());

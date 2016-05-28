@@ -10,19 +10,42 @@ import Modelo.ServicioAmortizacion;
 import Observer.BitacoraCSV;
 import Observer.BitacoraXML;
 import Observer.IEscritor;
+import Observer.Subject;
 
+
+
+//Singleton
 public class Controlador implements IControlador{
     
       // private FactoryCliente factoryCliente;
       // private FactoryServicio factoryAmortizacion; 
        //private ArrayList factoryIEscritor;
+        private static Controlador instance;
+    private Controlador(){
+        
+        
+        
+    }
     
-
+    public static Controlador getInstance(){
+        if(instance == null){
+            instance = new Controlador();
+        }
+        return instance;
+    }
+    
+    
     @Override
     public void actualizarBitacora(DTOServicioAmortizacion dtoAmortizacion,DTOCliente cliente) {
-        IEscritor escritor= new BitacoraCSV();// aqui va el subject?
-        escritor.crearArchivo();
-        escritor.escribirMovimiento(dtoAmortizacion, cliente);
+        Subject subject = new Subject();
+        IEscritor escritorCSV= new BitacoraCSV(subject);// aqui va el subject?
+        IEscritor escritorXML = new BitacoraXML(subject);
+        
+        subject.registrarMovimiento(dtoAmortizacion, cliente);
+           
+        
+     
+        
     }
 
     @Override

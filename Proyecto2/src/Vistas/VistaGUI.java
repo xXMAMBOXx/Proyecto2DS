@@ -407,7 +407,7 @@ public class VistaGUI extends javax.swing.JFrame {
         dtoAmortizacion.setCambio(this.cambioSeleccionado());
         
         
-        IControlador controlador =new Controlador();///FACTORY
+        IControlador controlador =Controlador.getInstance();///FACTORY
         controlador.solicitarPrestamo(dtoAmortizacion, dtoCliente);
            
         this.cargarTabla(dtoAmortizacion);
@@ -498,7 +498,7 @@ public class VistaGUI extends javax.swing.JFrame {
     }
     
     private String getFecha(){
-        IControlador controller=new Controlador();
+        IControlador controller= Controlador.getInstance();
         return controller.getServicioFecha();
     }
             

@@ -13,16 +13,20 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-public class BitacoraXML implements IEscritor {
-    private static String nombreArchivo="bitacoraXML.xml";
+public class BitacoraXML extends IEscritor {
+
     
-    public BitacoraXML(){
+    
+    public BitacoraXML(Subject subject){
+        super("bitacoraXML.xml");
+        this.subject = subject;
+        this.subject.attach(this);
         
     }
     
     @Override
      public void crearArchivo() {
-         String sFichero ="src\\Data\\"+nombreArchivo ;
+         String sFichero ="src\\Data\\"+getNombreArchivo() ;
          File fichero = new File(sFichero);
          if (fichero.exists()){
              return;
@@ -31,7 +35,7 @@ public class BitacoraXML implements IEscritor {
 
             Element elemento = new Element ( "BitacoraXML" );
             XMLOutputter outputter = new XMLOutputter( Format.getPrettyFormat() );
-            outputter.output ( new Document( elemento ), new FileOutputStream( "src\\Data\\"+nombreArchivo ) );
+            outputter.output ( new Document( elemento ), new FileOutputStream( "src\\Data\\"+getNombreArchivo() ) );
             }catch (Exception e){
                 e.getMessage();
         }
@@ -46,7 +50,7 @@ public class BitacoraXML implements IEscritor {
     public void escribirMovimiento(DTOServicioAmortizacion servicio, DTOCliente cliente) {
         try {
             SAXBuilder builder = new SAXBuilder();
-            FileInputStream xmlFile = new FileInputStream ("src\\Data\\"+nombreArchivo  );
+            FileInputStream xmlFile = new FileInputStream ("src\\Data\\"+getNombreArchivo()  );
             Document document = (Document) builder.build( xmlFile );
             Element elemento=document.getRootElement();
              // Obtenemos el objeto Document   
@@ -90,7 +94,7 @@ public class BitacoraXML implements IEscritor {
             
             XMLOutputter xmlOutput = new XMLOutputter();
             xmlOutput.setFormat(Format.getPrettyFormat());
-            xmlOutput.output(document, new FileWriter("src\\Data\\"+nombreArchivo ));
+            xmlOutput.output(document, new FileWriter("src\\Data\\"+getNombreArchivo() ));
    
         } catch (Exception ex) {
             ex.toString();
