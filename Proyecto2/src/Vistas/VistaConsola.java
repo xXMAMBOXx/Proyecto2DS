@@ -253,9 +253,11 @@ public class VistaConsola {
                   //solicita el prestamo
                   controller.solicitarPrestamo(dtoAmortizacion, cliente);
                   showDatos(dtoAmortizacion,cambio, anios);
-                  
-                  
-                  
+                      System.out.println("\n\nPresione Enter para volver al menú primciopal, o digitite salir para finalizar");
+                  String choice = input.readLine();
+                  if(choice=="salir"){
+                      break;
+                  }
                   
                   
                   
@@ -268,20 +270,32 @@ public class VistaConsola {
         
     }//end show menu
     
-    public void showDatos(DTOServicioAmortizacion servicio, double cambio, String anios){
+    private void showDatos(DTOServicioAmortizacion servicio, double cambio, String anios){
         
         System.out.println("\n \tPeriodo \t Deuda Inicial \t\tIntereses \t Amortización \t Cuota");
         
         for(int counter = 0;counter<Integer.parseInt(anios);counter++){
                       
-                    System.out.println("\n\t   " +(counter+1)+"\t\t     "+servicio.getDeudas().get(counter)/cambio+"           "+servicio.getIntereses().get(counter)/cambio+"          "+servicio.getAmortizaciones().get(counter)/cambio+"     "+servicio.getCuotas().get(counter)/cambio);
+                    System.out.println("\n\t   " +(counter+1)+"\t\t     "+arreglarMonto(servicio.getDeudas().get(counter)/cambio)+"           "+arreglarMonto(servicio.getIntereses().get(counter)/cambio)+"          "+arreglarMonto(servicio.getAmortizaciones().get(counter)/cambio)+"     "+arreglarMonto(servicio.getCuotas().get(counter)/cambio));
                     
-                    System.out.println("\n\t   Total:\t\t                   "+servicio.getIntereses().get(counter)/cambio+"          "+servicio.getAmortizaciones().get(counter)/cambio+"     "+servicio.getCuotas().get(counter)/cambio);
-                   
-                      
+                                          
                   }//for ends
-                  
+        
+         System.out.println("\n\t   Total:\t\t                "+arreglarMonto(servicio.getInteresTotal()/cambio)+"          "+arreglarMonto(servicio.getAmortizacionVK()/cambio)+"     "+arreglarMonto(servicio.getCuotaCK()/cambio));
+        
+         
        
+    }
+    
+    
+    
+     private double arreglarMonto(double monto){
+        double result=monto;
+        //System.err.println(String.valueOf(monto).length());
+        if(String.valueOf(monto).length()>10){
+                result=Double.parseDouble(String.valueOf(monto).substring(0,10));
+        }
+        return result;
     }
    // public void main(String[] args) throws IOException{
         
