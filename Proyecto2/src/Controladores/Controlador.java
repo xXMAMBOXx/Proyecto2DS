@@ -11,6 +11,11 @@ import Observer.BitacoraCSV;
 import Observer.BitacoraXML;
 import Observer.IEscritor;
 import Observer.Subject;
+import Integracion.ServiceBCCR;
+import Modelo.FactoryServicio;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -50,7 +55,25 @@ public class Controlador implements IControlador{
 
     @Override
     public ServicioAmortizacion crearServicio(DTOServicioAmortizacion dtoAmortizacion) {
-        ServicioAmortizacion servicio=new ServicioAleman(dtoAmortizacion);////FACTORY
+        FactoryServicio factory = new FactoryServicio();
+        
+        ServicioAmortizacion servicio = null;
+            try {
+                servicio = factory.createServicioAmortizacion(dtoAmortizacion);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoSuchMethodException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalArgumentException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvocationTargetException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         return servicio;
     }
 
@@ -91,5 +114,12 @@ public class Controlador implements IControlador{
         IServicioFecha service = new FechaSocket();
         return service.getFecha();
    }
+    
+    public String getCambio(){
+        ServiceBCCR bccr = new ServiceBCCR();
+        return bccr.getTipoCambio();
+        
+        
+    }
     
 }

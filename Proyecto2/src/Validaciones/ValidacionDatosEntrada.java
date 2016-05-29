@@ -13,7 +13,7 @@ public class ValidacionDatosEntrada {
     
     public boolean validarLetras(String palabra){
         
-        return palabra.matches("[a-zA-Z]+$");
+        return palabra.matches("[a-zA-Z ]+$");
               
     }
     

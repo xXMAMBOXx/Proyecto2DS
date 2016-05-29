@@ -18,7 +18,7 @@ public class FactoryServicio {
     
     public ServicioAmortizacion createServicioAmortizacion(DTOServicioAmortizacion servicio) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         
-         return (ServicioAmortizacion) Class.forName("modelo."+servicio.getTipo()).getConstructor(DTOServicioAmortizacion.class).newInstance(servicio);
+         return (ServicioAmortizacion) Class.forName("Modelo."+servicio.getTipo()).getConstructor(DTOServicioAmortizacion.class).newInstance(servicio);
     }
     
 }
