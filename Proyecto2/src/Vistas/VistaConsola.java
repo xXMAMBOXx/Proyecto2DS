@@ -248,11 +248,11 @@ public class VistaConsola {
     public void showDatos(DTOCliente cliente, DTOServicioAmortizacion servicio){
        
     }
-    public void main(String[] args) throws IOException{
+   // public void main(String[] args) throws IOException{
         
-        showMenu();
+     //   showMenu();
         
-    }
+   // }
 }
 
 

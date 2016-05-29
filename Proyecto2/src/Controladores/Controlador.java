@@ -22,9 +22,6 @@ import java.util.logging.Logger;
 //Singleton
 public class Controlador implements IControlador{
     
-      // private FactoryCliente factoryCliente;
-      // private FactoryServicio factoryAmortizacion; 
-       //private ArrayList factoryIEscritor;
         private static Controlador instance;
     private Controlador(){
         
@@ -43,7 +40,7 @@ public class Controlador implements IControlador{
     @Override
     public void actualizarBitacora(DTOServicioAmortizacion dtoAmortizacion,DTOCliente cliente) {
         Subject subject = new Subject();
-        IEscritor escritorCSV= new BitacoraCSV(subject);// aqui va el subject?
+        IEscritor escritorCSV= new BitacoraCSV(subject);
         IEscritor escritorXML = new BitacoraXML(subject);
         
         subject.registrarMovimiento(dtoAmortizacion, cliente);

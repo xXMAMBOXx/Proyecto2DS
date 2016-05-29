@@ -21,6 +21,7 @@ public class BitacoraXML extends IEscritor {
         super("bitacoraXML.xml");
         this.subject = subject;
         this.subject.attach(this);
+        this.crearArchivo();
         
     }
     

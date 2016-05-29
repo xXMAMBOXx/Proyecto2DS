@@ -8,15 +8,9 @@ package Observer;
 
 import DTOs.DTOCliente;
 import DTOs.DTOServicioAmortizacion;
-import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author xXMAMBOXx

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BitacoraXML>
+  <NuevosDatos>------------------------------------------------</NuevosDatos>
+  <Nombre>Marvin</Nombre>
+  <PrimerApellido>Fernández</PrimerApellido>
+  <SegundoApellido>Coto</SegundoApellido>
+  <MontoPrestamo>1000000.0</MontoPrestamo>
+  <Periodos>5</Periodos>
+  <Interes>15.0</Interes>
+  <TipoSistema>ServicioAleman</TipoSistema>
+  <TipoMoneda>Colon</TipoMoneda>
+</BitacoraXML>
