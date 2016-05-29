@@ -225,7 +225,7 @@ public class VistaConsola {
                   dtoAmortizacion.setTipo(claseSistema);
                   dtoAmortizacion.setMontoPrestamo(Double.parseDouble(monto));
                   dtoAmortizacion.setPeriodos(Integer.parseInt(anios));
-                  
+                  String cambioMostrar = controller.getCambio();
                   dtoAmortizacion.setInteres(Double.parseDouble(interes)/100.0);
                    double cambio = 1;
                   if(moneda == "Dolares"){
@@ -247,7 +247,7 @@ public class VistaConsola {
                   System.out.println("\nInteres:"+interes);
                   System.out.println("\nSistema: Servicio "+tipoSistema);
                   System.out.println("\nMoneda:"+moneda);
-                   System.out.println("\nTipo de Cambio:"+cambio);
+                   System.out.println("\nTipo de Cambio:"+cambioMostrar);
                    
                    
                   //solicita el prestamo
