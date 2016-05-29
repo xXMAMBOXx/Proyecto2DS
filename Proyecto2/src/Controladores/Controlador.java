@@ -11,6 +11,7 @@ import Observer.BitacoraCSV;
 import Observer.BitacoraXML;
 import Observer.IEscritor;
 import Observer.Subject;
+import Integracion.ServicioBancario;
 import Integracion.ServiceBCCR;
 import Modelo.FactoryServicio;
 import java.lang.reflect.InvocationTargetException;
@@ -113,7 +114,7 @@ public class Controlador implements IControlador{
    }
     
     public String getCambio(){
-        ServiceBCCR bccr = new ServiceBCCR();
+        ServicioBancario bccr = new ServiceBCCR();
         return bccr.getTipoCambio();
         
         

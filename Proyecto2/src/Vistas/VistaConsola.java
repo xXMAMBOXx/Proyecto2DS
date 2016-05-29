@@ -146,24 +146,37 @@ public class VistaConsola {
                   else{
                      int opcionP = Integer.parseInt(opcion);
                      System.out.println(opcionP);
-                     switch(opcionP){
-                         case 1:
-                             tipoSistema ="Aleman";
+                     
+                     if(opcionP == 1){
+                         
+                         tipoSistema ="Aleman";
                              claseSistema = "ServicioAleman";
-                             
-                         case 2:
+                         
+                     } 
+                     else{
+                         if(opcionP == 2){
                              tipoSistema ="Frances";
                              claseSistema = "ServicioFrances";
-                        
-                         case 3:
-                             tipoSistema ="Americano";
-                             claseSistema = "ServicioAmericano";
                              
-                         default:
-                             System.out.println("Ingrese una de las opciones validas, empiece nuevamente");
+                         }
+                         else{
+                             
+                             if(opcionP == 3){
+                                 tipoSistema ="Americano";
+                             claseSistema = "ServicioAmericano";
+                                 
+                             }
+                             else{
+                                 
+                                 System.out.println("Ingrese una de las opciones validas, empiece nuevamente");
                              break;
                              
+                             
+                             }
+                             
+                         }
                      }
+                     
                   }//cierre else
                   
                   
@@ -178,19 +191,22 @@ public class VistaConsola {
                   }
                   else{
                      int opcionP = Integer.parseInt(opcion);
-                     switch(opcionP){
-                         case 1:
-                             moneda ="Colones";
-                            
-                         case 2:
+                     if(opcionP == 1){
+                          moneda ="Colones";
+                         
+                     }
+                     else{
+                         if(opcionP == 2){
+                             
                              moneda ="Dolares";
                              
-                        
-                        default:
+                         }
+                         else{
                              System.out.println("Ingrese una de las opciones validas, empiece nuevamente");
                              break;
-                             
+                         }
                      }
+                     
                   }//cierre else
                   
                   
@@ -212,7 +228,7 @@ public class VistaConsola {
                   
                   dtoAmortizacion.setInteres(Double.parseDouble(interes)/100.0);
                    double cambio = 1;
-                  if(moneda == "dolares"){
+                  if(moneda == "Dolares"){
                       cambio = Double.parseDouble(controller.getCambio());
                       
                       
@@ -227,10 +243,17 @@ public class VistaConsola {
                   System.out.println("\nApellido 1:"+apellido1);
                   System.out.println("\nApellido 2:"+apellido2);
                   System.out.println("\nMonto:"+monto);
-                  System.out.println("\nPeriosoa:"+anios);
+                  System.out.println("\nPeriodos:"+anios+" años");
                   System.out.println("\nInteres:"+interes);
                   System.out.println("\nSistema: Servicio "+tipoSistema);
                   System.out.println("\nMoneda:"+moneda);
+                   System.out.println("\nTipo de Cambio:"+cambio);
+                   
+                   
+                  //solicita el prestamo
+                  controller.solicitarPrestamo(dtoAmortizacion, cliente);
+                  showDatos(dtoAmortizacion,cambio, anios);
+                  
                   
                   
                   
@@ -245,7 +268,19 @@ public class VistaConsola {
         
     }//end show menu
     
-    public void showDatos(DTOCliente cliente, DTOServicioAmortizacion servicio){
+    public void showDatos(DTOServicioAmortizacion servicio, double cambio, String anios){
+        
+        System.out.println("\n \tPeriodo \t Deuda Inicial \t\tIntereses \t Amortización \t Cuota");
+        
+        for(int counter = 0;counter<Integer.parseInt(anios);counter++){
+                      
+                    System.out.println("\n\t   " +(counter+1)+"\t\t     "+servicio.getDeudas().get(counter)/cambio+"           "+servicio.getIntereses().get(counter)/cambio+"          "+servicio.getAmortizaciones().get(counter)/cambio+"     "+servicio.getCuotas().get(counter)/cambio);
+                    
+                    System.out.println("\n\t   Total:\t\t                   "+servicio.getIntereses().get(counter)/cambio+"          "+servicio.getAmortizaciones().get(counter)/cambio+"     "+servicio.getCuotas().get(counter)/cambio);
+                   
+                      
+                  }//for ends
+                  
        
     }
    // public void main(String[] args) throws IOException{
