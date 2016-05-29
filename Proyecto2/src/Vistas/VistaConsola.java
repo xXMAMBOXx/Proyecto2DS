@@ -247,7 +247,7 @@ public class VistaConsola {
                   System.out.println("\nInteres:"+interes);
                   System.out.println("\nSistema: Servicio "+tipoSistema);
                   System.out.println("\nMoneda:"+moneda);
-                   System.out.println("\nTipo de Cambio:"+cambioMostrar);
+                   System.out.println("\nTipo de Cambio:"+arreglarMonto(Double.parseDouble(cambioMostrar)));
                    
                    
                   //solicita el prestamo
