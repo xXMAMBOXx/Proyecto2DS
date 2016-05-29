@@ -253,7 +253,7 @@ public class VistaConsola {
                   //solicita el prestamo
                   controller.solicitarPrestamo(dtoAmortizacion, cliente);
                   showDatos(dtoAmortizacion,cambio, anios);
-                      System.out.println("\n\nPresione Enter para volver al menú primciopal, o digitite salir para finalizar");
+                      System.out.println("\n\nPresione Enter para volver al menú principal, o digitite salir para finalizar");
                   String choice = input.readLine();
                   if(choice=="salir"){
                       break;
