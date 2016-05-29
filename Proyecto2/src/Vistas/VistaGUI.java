@@ -4,7 +4,6 @@ import Controladores.Controlador;
 import Controladores.IControlador;
 import DTOs.DTOCliente;
 import DTOs.DTOServicioAmortizacion;
-import Vistas.VistaConsola;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -75,6 +74,7 @@ public class VistaGUI extends javax.swing.JFrame {
         interesResultado = new javax.swing.JLabel();
         monedaResultado = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        cambioResultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,7 +109,7 @@ public class VistaGUI extends javax.swing.JFrame {
         periodos.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel7.setText("Seleccione el tipo de Sistema y moneda a utilizar:");
+        jLabel7.setText("Seleccione el tipo de Sistema y moneda a visualizar:");
 
         tipoSistema.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Alemán", "Francés", "Americano" };
@@ -199,6 +199,9 @@ public class VistaGUI extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel22.setText("Nombre:");
 
+        cambioResultado.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        cambioResultado.setText("\"\"");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -247,9 +250,7 @@ public class VistaGUI extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jScrollPane3)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(fechaResultado)))
+                            .addComponent(fechaResultado))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
@@ -287,9 +288,12 @@ public class VistaGUI extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(monedaResultado)
                                                     .addComponent(sistemaResultado)))
-                                            .addComponent(jLabel10)))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel10)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(cambioResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +324,9 @@ public class VistaGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel10))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel10)
+                                .addComponent(cambioResultado)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -462,6 +468,7 @@ public class VistaGUI extends javax.swing.JFrame {
         this.sistemaResultado.setText("Servicio "+this.tipoServicio);
         this.interesResultado.setText(this.arreglarPorcentaje(servicio.getInteres()*100)+" %");
         this.fechaResultado.setText(this.getFecha());
+        this.cambioResultado.setText(this.getCambio().substring(0,7));
         
     }
     
@@ -503,10 +510,14 @@ public class VistaGUI extends javax.swing.JFrame {
         IControlador controller= Controlador.getInstance();
         return controller.getServicioFecha();
     }
-            
+     
+     private String getCambio(){
+        IControlador controller= Controlador.getInstance();
+        return (String)((Controlador)controller).getCambio();
+    }
     private void setCambios(){
         this.cambios[0]=1;
-        this.cambios[1]=537.6;
+        this.cambios[1]=Double.parseDouble(this.getCambio());
     }
     private double cambioSeleccionado(){
         return this.cambios[this.tipoMoneda.getSelectedIndex()];
@@ -570,6 +581,7 @@ public class VistaGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido2;
+    private javax.swing.JLabel cambioResultado;
     private javax.swing.JLabel fechaResultado;
     private javax.swing.JSpinner interes;
     private javax.swing.JLabel interesResultado;

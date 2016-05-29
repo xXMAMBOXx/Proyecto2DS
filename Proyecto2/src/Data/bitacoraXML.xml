@@ -1,12 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BitacoraXML>
   <NuevosDatos>------------------------------------------------</NuevosDatos>
-  <Nombre>Marvin</Nombre>
-  <PrimerApellido>Fernández</PrimerApellido>
-  <SegundoApellido>Coto</SegundoApellido>
+  <Nombre>Luis Javier</Nombre>
+  <PrimerApellido>Chavarría</PrimerApellido>
+  <SegundoApellido>Sánchez</SegundoApellido>
   <MontoPrestamo>1000000.0</MontoPrestamo>
   <Periodos>5</Periodos>
   <Interes>15.0</Interes>
   <TipoSistema>ServicioAleman</TipoSistema>
+  <TipoMoneda>Colon</TipoMoneda>
+  <NuevosDatos>------------------------------------------------</NuevosDatos>
+  <Nombre>Luis Javier</Nombre>
+  <PrimerApellido>Chavarría</PrimerApellido>
+  <SegundoApellido>Sánchez</SegundoApellido>
+  <MontoPrestamo>1000000.0</MontoPrestamo>
+  <Periodos>5</Periodos>
+  <Interes>15.0</Interes>
+  <TipoSistema>ServicioFrances</TipoSistema>
+  <TipoMoneda>Colon</TipoMoneda>
+  <NuevosDatos>------------------------------------------------</NuevosDatos>
+  <Nombre>Luis Javier</Nombre>
+  <PrimerApellido>Chavarría</PrimerApellido>
+  <SegundoApellido>Sánchez</SegundoApellido>
+  <MontoPrestamo>1000000.0</MontoPrestamo>
+  <Periodos>5</Periodos>
+  <Interes>15.0</Interes>
+  <TipoSistema>ServicioFrances</TipoSistema>
+  <TipoMoneda>Colon</TipoMoneda>
+  <NuevosDatos>------------------------------------------------</NuevosDatos>
+  <Nombre>Luis Javier</Nombre>
+  <PrimerApellido>Chavarría</PrimerApellido>
+  <SegundoApellido>Sánchez</SegundoApellido>
+  <MontoPrestamo>1000000.0</MontoPrestamo>
+  <Periodos>5</Periodos>
+  <Interes>15.0</Interes>
+  <TipoSistema>ServicioAmericano</TipoSistema>
+  <TipoMoneda>Colon</TipoMoneda>
+  <NuevosDatos>------------------------------------------------</NuevosDatos>
+  <Nombre>Luis Javier</Nombre>
+  <PrimerApellido>Chavarría</PrimerApellido>
+  <SegundoApellido>Sánchez</SegundoApellido>
+  <MontoPrestamo>1000000.0</MontoPrestamo>
+  <Periodos>5</Periodos>
+  <Interes>15.0</Interes>
+  <TipoSistema>ServicioAmericano</TipoSistema>
   <TipoMoneda>Colon</TipoMoneda>
 </BitacoraXML>
